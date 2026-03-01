@@ -504,6 +504,7 @@ def record(cfg: RecordConfig) -> LeRobotDataset:
                         time.sleep(0.1)
 
                 if events["stop_recording"]:
+                    print("Stopped recording. Breaking out of episode loop")
                     break
 
                 log_say(f"Recording episode {dataset.num_episodes}", cfg.play_sounds)
@@ -562,6 +563,7 @@ def record(cfg: RecordConfig) -> LeRobotDataset:
 
                 dataset.save_episode()
                 recorded_episodes += 1
+                print(f"Recorded episodes: {recorded_episodes}/{cfg.dataset.num_episodes}")
     finally:
         log_say("Stop recording", cfg.play_sounds, blocking=True)
 

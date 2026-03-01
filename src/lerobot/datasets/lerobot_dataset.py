@@ -190,6 +190,7 @@ class LeRobotDatasetMetadata:
         """Codebase version used to create this dataset."""
         return packaging.version.parse(self.info["codebase_version"])
 
+    # Newer version of method (breaking lerobot changes), which is not backwards compatible with openpi training
     def get_data_file_path(self, ep_index: int) -> Path:
         if self.episodes is None:
             self.episodes = load_episodes(self.root)
