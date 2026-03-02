@@ -103,10 +103,13 @@ def ensure_safe_goal_position(
         safe_diff = max(safe_diff, -max_diff)
         safe_goal_pos = present_pos + safe_diff
         safe_goal_positions[key] = safe_goal_pos
+        # Only if the clipped goal position has been changed by more than 1e-4 do we alert about it
         if abs(safe_goal_pos - goal_pos) > 1e-4:
             warnings_dict[key] = {
                 "original goal_pos": goal_pos,
                 "safe goal_pos": safe_goal_pos,
+                "diff": diff,
+                "max_diff": max_diff,
             }
 
     if warnings_dict:
